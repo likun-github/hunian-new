@@ -3,8 +3,10 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
-			}
+                "app-plus": {
+                    "titleNView": false //禁用原生导航栏
+                }
+            }
 		}
 	],
 	"globalStyle": {

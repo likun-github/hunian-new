@@ -1,7 +1,10 @@
 <template>
 	<view class="container">
 		<image src="../../static/expect.jpg" style="position: absolute;width: 100%;height: 100%;"></image>
-		<view class="title">下午好</view>
+		<view class="title">
+			<text>下午好</text>
+			<image src="../../static/more.png"></image>
+		</view>
 		<view class="title1">向外看的人，幻想；向内看的人，自省</view>
 		<view class="cicle" @tap="breathe()">
 			<view class="triangle"></view>
@@ -59,15 +62,23 @@
 		width: 100%;
 		height: 100%;
 	}
-
+	
 	.title {
+		position: relative;
+		display: flex;
+		margin-top: 50upx;
+	}
+	.title text{
 		font-size: 40upx;
 		color: #ffffff;
-		position: relative;
-		margin-top: 50upx;
 		margin-left: 50upx;
 	}
-
+	.title image{
+		margin-left: 500upx;
+		width: 50upx;
+		height: 50upx;
+	}
+	
 	.title1 {
 		font-size: 24upx;
 		color: #ffffff;

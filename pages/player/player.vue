@@ -1,8 +1,8 @@
 <template>
 	<view class="container">
 		<image src="../../static/expect.jpg"></image>
-		<view class="title">
-			<image src="/static/back.png" style="width: 100%;height: 100%;position: absolute;"></image>
+		<view class="title" @tap="back()">
+			<image src="/static/back.png" style="width: 50%;height: 50%;position: absolute;"></image>
 		</view>
 		<view class="lopp"></view>
 		<view :class="{daily_right:status==1}">
@@ -103,6 +103,12 @@
 			this.duration=this.musicduration[this.index];
 		},
 		methods: {
+			back: function() {
+			
+				uni.navigateBack({
+					delta: 1
+				});
+			},
 			changestatus: function(provider) {
 				this.status = provider;
 				console.log("this.status" + this.status)
@@ -159,6 +165,8 @@
 	}
 	.title{
 		position: absolute;
+		margin-top: 50upx;
+		margin-left: 50upx;
 		width: 100upx;
 		height: 100upx;
 		

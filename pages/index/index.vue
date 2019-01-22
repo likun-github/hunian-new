@@ -1,19 +1,19 @@
 <template>
-	<view class="sum">
+	<view class="container">
 		<image src="../../static/expect.jpg" style="position: absolute;width: 100%;height: 100%;"></image>
 		<view class="title">下午好</view>
 		<view class="title1">向外看的人，幻想；向内看的人，自省</view>
-		<view class="cicle">
+		<view class="cicle" @tap="breathe()">
 			<view class="triangle"></view>
-			<view style="position: absolute;color: #aaaaaa;font-size: 24upx;margin-left:70upx;margin-top: 25upx;">开始专注</view>
+			<view style="position: absolute;color: #aaaaaa;font-size: 24upx;margin-left:70upx;margin-top: 25upx;">开始呼吸</view>
 		</view>
 		<view class="line"></view>
 		<scroll-view class="scroll-view_H" scroll-x style="width: 100%" scroll-with-animation>
 			<view class="title_wrap">
-				<image src="../../static/moning.png" style="width: 100%;height: 100%;"></image>
-				<image src="../../static/focus.png" style="width: 100%;height: 100%;"></image>
-				<image src="../../static/h3.jpg" style="width: 100%;height: 100%;"></image>
-				<image src="../../static/h4.jpg" style="width: 100%;height: 100%;"></image>
+				<image src="../../static/morning.png"  @tap="choosecategory(0)"></image>
+				<image src="../../static/focus.png"  @tap="choosecategory(1)"></image>
+				<image src="../../static/lunch.png"  @tap="choosecategory(2)"></image>
+				<image src="../../static/night.png"  @tap="choosecategory(3)"></image>
 			</view>
 		</scroll-view>
 
@@ -22,6 +22,10 @@
 </template>
 
 <script>
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex';
 	export default {
 		data() {
 			return {
@@ -32,13 +36,25 @@
 
 		},
 		methods: {
-
+			choosecategory:function(provider){
+				this.changeindex(provider);
+				uni.navigateTo({
+					url: '/pages/player/player',
+				});
+			},
+			breathe:function(){
+				uni.navigateTo({
+					url: '/pages/breath/breathe',
+				});
+			},
+			
+			...mapMutations(["changeindex"])
 		}
 	}
 </script>
 
 <style>
-	.sum {
+	.container {
 		position: absolute;
 		width: 100%;
 		height: 100%;
@@ -96,17 +112,16 @@
 	}
 
 	.title_wrap {
-		margin-top: 30upx;
 		position: relative;
 		width: 150%;
-		height: 230upx;
+		height: 250upx;
 		display: flex;
 	}
 
 	.title_wrap image {
-		width: 200upx;
-		margin-left: 30upx;
+		width: 100%;
 		height: 100%;
-		display: inline-block;
+		margin-left: 30upx;
+		
 	}
 </style>

@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<image src="../../static/expect.jpg"></image>
-		<view class="title" @tap="back()">
+		<view v-if="status!=1" class="title" @tap="back()">
 			<image src="/static/back.png" style="width: 50%;height: 50%;position: absolute;"></image>
 		</view>
 		<view class="lopp"></view>
@@ -30,8 +30,6 @@
 
 			<view class="word3">放弃</view>
 		</view>
-
-
 
 	</view>
 </template>
@@ -94,6 +92,7 @@
 		computed: {
 			...mapState(["index"]),
 		},
+
 		onShow: function() {
 			musicplayer.src = this.music[this.index];
 			

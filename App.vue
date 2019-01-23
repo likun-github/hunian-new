@@ -1,7 +1,8 @@
 <script>
 	export default {
 		onLaunch: function () {
-			console.log('App Launch')
+			console.log('App Launch');
+			plus.navigator.setFullscreen(true);
 		},
 		onShow: function () {
 			console.log('App Show')
@@ -13,5 +14,10 @@
 </script>
 
 <style>
-	/*每个页面公共css */
+		.container {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background: #000000;
+	}
 </style>

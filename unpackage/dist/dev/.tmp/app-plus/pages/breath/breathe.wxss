@@ -1,12 +1,29 @@
 
+.clock{
+	color: #FFFFFF;
+	position: absolute;
+	width: 100rpx;
+	height: 60rpx;
+	left: 325rpx;
+	top:200rpx;
+}
+.title{
+	position: absolute;
+	margin-top: 50rpx;
+	margin-left: 50rpx;
+	width: 100rpx;
+	height: 100rpx;
+}
 .container{
 	position: absolute;
 	width: 100%;
 	height: 100%;
 }
 .cicle{
-	position: relative;
-	width: 600rpx;
-	height: 600rpx;
+	position: absolute;
+	width: 500rpx;
+	height: 500rpx;
+	left: 120rpx;
+	top: 350rpx;
 }
 

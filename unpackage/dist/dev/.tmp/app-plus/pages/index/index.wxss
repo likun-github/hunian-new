@@ -5,11 +5,22 @@
 	height: 100%;
 }
 .title {
+	position: relative;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	margin-top: 50rpx;
+}
+.title text{
 	font-size: 40rpx;
 	color: #ffffff;
-	position: relative;
-	margin-top: 50rpx;
 	margin-left: 50rpx;
+}
+.title image{
+	margin-left: 500rpx;
+	width: 50rpx;
+	height: 50rpx;
 }
 .title1 {
 	font-size: 24rpx;

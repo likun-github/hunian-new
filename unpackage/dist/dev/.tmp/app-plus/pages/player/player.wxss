@@ -6,6 +6,8 @@
 }
 .title{
 	position: absolute;
+	margin-top: 50rpx;
+	margin-left: 50rpx;
 	width: 100rpx;
 	height: 100rpx;
 }

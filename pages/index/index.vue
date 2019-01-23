@@ -3,7 +3,7 @@
 		<image src="../../static/expect.jpg" style="position: absolute;width: 100%;height: 100%;"></image>
 		<view class="title">
 			<text>下午好</text>
-			<image src="../../static/more.png"></image>
+			<image src="../../static/more.png" @tap="more()"></image>
 		</view>
 		<view class="title1">向外看的人，幻想；向内看的人，自省</view>
 		<view class="cicle" @tap="breathe()">
@@ -48,6 +48,11 @@
 			breathe:function(){
 				uni.navigateTo({
 					url: '/pages/breath/breathe',
+				});
+			},
+			more:function(){
+				uni.navigateTo({
+					url: '/pages/more/more',
 				});
 			},
 			

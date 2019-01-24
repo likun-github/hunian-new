@@ -27,8 +27,15 @@
 		mapState,
 		mapMutations
 	} from 'vuex';
+	import homeList from '../../common/home.js';
+	var self;
 	export default {
 		data() {
+			allList1: [];
+			allList2: [];
+			allList3: [];
+			allList4: [];
+			self=this
 			return {
 				title: 'Hello',
 				year: '',
@@ -38,13 +45,45 @@
 			}
 		},
 		onShow: function() {
-			// 获取当前日期
+			
+// 			allList1 = uni.getStorageSync('home_key1');
+// 			if (allList) {
+// 				console.log('是');
+// 				self.getdailymusic(self.dailyList);
+// 			} else {
+// 				console.log('否');
+// 				self.getdailymusic(homeList);
+// 				for (var i=0;i<4;i++) {
+// 					console.log('i='+i);
+// 					self.allhomemusic(i);
+// 				}
+// 			}
+			self.allList1= uni.getStorageSync('home_key1');
+			if(self.allList1){
+				console.log("是");
+			}
+			else{
+				self.allList1=homeList[0];
+				
+			}
+			self.allList2= uni.getStorageSync('home_key2');
+			self.allList3= uni.getStorageSync('home_key3');
+			self.allList4= uni.getStorageSync('home_key4');
+			self.allList1=homeList[0];
+			self.allList2=homeList[1];
+			self.allList3=homeList[2];
+			self.allList4=homeList[3];
+			
+			console.log("self.allList1"+self.allList1.url);
+			
+ 			
+			
+			
+			
+			
+			
 			var date = new Date();
-
-			// 获取当前月份
 			this.month = date.getMonth() + 1;
-
-			// 获取当前是几号
 			this.date = date.getDate();
 			var day = date.getDay();
 			this.year = date.getFullYear();
@@ -82,8 +121,52 @@
 			if (this.date >= 0 && this.date <= 9) {
 				this.date = "0" + this.date;
 			}
+			
 		},
 		methods: {
+			allhomemusic:function(i){
+							uni.downloadFile({
+								url: self.List[i],
+								success: (res) => {
+									if (res.statusCode === 200) {
+										console.log('下载完成');
+										var newFile = res.tempFilePath;
+										uni.saveFile({
+											tempFilePath: newFile,
+											success: function(res) {
+												homeList[i].url = res.savedFilePath;
+												homenumber++;
+												self.getdailymusic(homeList);
+												if (homenumber == 4) {
+													
+													uni.setStorage({
+														key: 'home_key',
+														data: homeList,
+														success: function() {
+															console.log('success');
+														}
+													});
+												}
+												console.log('节点三');
+											},
+											fail: function() {
+												console.log('保存失败');
+											},
+											complete: function() {
+												console.log('保存完成');
+							
+											}
+										});
+							
+							
+									}
+								},
+								fail: function() {
+									console.log('失败i'+i);
+								}
+							});
+						
+			},
 			choosecategory: function(provider) {
 				this.changeindex(provider);
 				uni.navigateTo({
@@ -101,7 +184,7 @@
 				});
 			},
 
-			...mapMutations(["changeindex"])
+			...mapMutations(["changeindex","choosemusic"])
 		}
 	}
 </script>

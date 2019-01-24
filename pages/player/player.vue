@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<image src="../../static/expect.jpg"></image>
-		<view class="title" @tap="back()">
+		<view v-if="status!=1" class="title" @tap="back()">
 			<image src="/static/back.png" style="width: 50%;height: 50%;position: absolute;"></image>
 		</view>
 		<view class="lopp"></view>
@@ -14,6 +14,7 @@
 			<view>{{name}}</view>
 			<view style="margin-top: 20upx;">{{minute}}:{{second}}</view>
 		</view>
+		
 		<view v-if="status==0" class="cicle" @tap="changestatus(1)">
 			<view class="triangle"></view>
 			<view class="word">开始专注</view>
@@ -30,8 +31,6 @@
 			<view class="word3">放弃</view>
 		</view>
 
-
-
 	</view>
 </template>
 
@@ -45,7 +44,7 @@
 	musicplayer.autoplay = false;
 	export default {
 		data() {
-			self = this
+			self=this
 			return {
 				status: 0,
 				music: [
@@ -53,56 +52,54 @@
 					"https://xiaoyibang.top/uploads/uploads/focus.mp3",
 					"https://xiaoyibang.top/uploads/uploads/lunch.mp3",
 					"https://xiaoyibang.top/uploads/uploads/night.mp3",
-
+					
 				],
-				muscicminute: [
+				muscicminute:[
 					"05",
 					"07",
 					"07",
 					"08",
-
-
+					
+					
 				],
-				musicsecond: [
+				musicsecond:[
 					"28",
 					"35",
 					"25",
 					"34",
-
-
+					
+					
 				],
-				musicname: [
+				musicname:[
 					"晨起",
 					"专注",
 					"午休",
 					"晚眠",
-
+					
 				],
-				musicduration: [
+				musicduration:[
 					328,
 					455,
 					445,
 					514,
 				],
-				name: '',
-				minute: '',
-				second: '',
-				duration: 0,
+				name:'',
+				minute:'',
+				second:'',
+				duration:0,
 			};
 		},
 		computed: {
-			...mapState(["index"]),
+			...mapState(["index","usetime"]),
 		},
+
 		onShow: function() {
 			musicplayer.src = this.music[this.index];
-			console.log("musicplayer.src" + musicplayer.src);
-			this.minute = this.muscicminute[this.index];
-			this.second = this.musicsecond[this.index];
-			this.name = this.musicname[this.index];
-			this.duration = this.musicduration[this.index];
-		},
-		onHide: function() {
-			musicplayer.stop();
+			
+			this.minute=this.muscicminute[this.index];
+			this.second=this.musicsecond[this.index];
+			this.name=this.musicname[this.index];
+			this.duration=this.musicduration[this.index];
 		},
 		methods: {
 			back: function() {
@@ -114,42 +111,48 @@
 				this.status = provider;
 				if (this.status == 1) {
 					musicplayer.play();
-					console.log("正在播放");
-					console.log("musicplayer.paused" + musicplayer.paused);
+					if(this.minute<=7 ){
+					this.actime();
+					}
+					console.log('usetime:'+this.usetime);
 					let interval = setInterval(function() {
-						console.log("currentmusic" + musicplayer.currentTime);
 						
-						var time = self.duration - musicplayer.currentTime;
-						if (self.duration <= musicplayer.currentTime) {
-							self.status = 0;
+						var time =self.duration-musicplayer.currentTime;
+						if (self.duration<= musicplayer.currentTime) {
+							self.status= 0;
 						}
-						if (self.status != 1) {
+						if (self.status!=1) {
 							clearInterval(interval);
 						}
-						var minute1 = Math.floor(time / 60);
-						var second1 = Math.floor(time - minute1 * 60);
-						if (minute1 < 10) {
-							self.minute = '0' + String(minute1);
-						} else {
-							self.minute = String(minute1);
+						
+						var minute1=Math.floor(time/60);
+						
+						var second1=Math.floor(time-minute1*60);
+						if(minute1<10){
+							self.minute='0'+String(minute1);
 						}
-						if (second1 < 10) {
-							self.second = '0' + String(second1);
-						} else {
-							self.second = String(second1);
+						else{
+							self.minute=String(minute1);
 						}
+						if(second1<10){
+							self.second='0'+String(second1);
+						}
+						else{
+							self.second=String(second1);
+						}
+						
+// 						self.minute='03';
+// 						self.second=Math.floor(currenttime-self.minute*60);
+						
 					}, 1000);
 				} else if (this.status == 2) {
-					console.log("musicplayer.paused" + musicplayer.paused);
 					musicplayer.pause();
 				} else if (this.status == 0) {
-					console.log("musicplayer.paused" + musicplayer.paused);
 					musicplayer.stop();
 
 				}
-			}
-
-
+			},
+                    ...mapMutations(["actime"]),
 		}
 
 	}
@@ -161,16 +164,14 @@
 		width: 100%;
 		height: 100%;
 	}
-
-	.title {
+	.title{
 		position: absolute;
 		margin-top: 50upx;
 		margin-left: 50upx;
 		width: 100upx;
 		height: 100upx;
-
+		
 	}
-
 	.daily_right {
 		position: absolute;
 		width: 750upx;
@@ -180,12 +181,12 @@
 
 	@keyframes shake {
 		0% {
-			opacity: 1;
+			 opacity:1;
 			-webkit-transform: scale(0.6);
 		}
 
 		100% {
-			opacity: 0;
+			 opacity:0;
 			-webkit-transform: scale(1);
 		}
 	}
@@ -232,8 +233,7 @@
 		border-style: solid;
 		border-width: 2upx;
 	}
-
-	.medium {
+	.medium{
 		position: relative;
 		margin-top: 460upx;
 		text-align: center;
@@ -241,9 +241,9 @@
 		color: #ffffff;
 		width: 100%;
 		height: 300upx;
-
+		
 	}
-
+	
 	.container image {
 		position: absolute;
 		width: 100%;

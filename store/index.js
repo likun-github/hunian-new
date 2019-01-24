@@ -10,8 +10,8 @@ const store = new Vuex.Store({
 		changeindex(state,provider){
 			console.log("provider"+provider)
 			state.index=provider;
-		}
-		
+		},
+
 		
 		
 		

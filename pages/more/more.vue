@@ -74,58 +74,90 @@
 				aday:15,
 				yday:255,
 				mydate:0,
-				x1:76.1,
-				x2:80.1,
-				x3:85.1,
+				x1:20.5,
+				x2:80.5,
+				x3:57.5,
 				x4:80.5,
-				x5:100,
+				x5:90.5,
 				
 			};
 		},
 		computed: {
 			halfheight(){
 				return uni.upx2px(750/2)+'px';
-			}
+			},
+			...mapState(["usetime","x11","x22","x33","x44"]),
 		},
 		onReady:function(e){
             var wid=uni.getSystemInfoSync().windowWidth;
-			var hei=uni.getSystemInfoSync().windowHeight;
-			console.log('wid='+wid);
-			console.log('hei='+hei);
+
+			
+	        console.log(this.usetime);
+			 self.x5=this.usetime;
+			 
+			
+			
+			
+			
 			var m=Math.floor((wid/375)*63);
-			var h=Math.floor()
+			
 			var Date1=new Date();
 
 			this.mydate=Date1.getDate();
+            
+
 			//d取值40至100越大越差
-			 d1=90;
-			 d2=41;
-			 d3=60;
-			 d4=85;
-			 d5=60;
-			
+			 d1=Math.floor(70+(50-self.x1)*3/5);
+			 d2=Math.floor(70+(50-self.x2)*3/5);
+			 d3=Math.floor(70+(50-self.x3)*3/5);
+			 d4=Math.floor(70+(50-self.x4)*3/5);
+			 d5=Math.floor(70+(50-self.x5)*3/5);
+
 			//找到最大值
 			var dm;
 			dm=Math.min(d1,d2,d3,d4,d5);
-			//正念指数
-            self.x1=(70-d1)*2/3+80;
-			self.x1=self.x1.toFixed(1);
-			self.x2=(70-d2)*2/3+80;
-			self.x2=self.x2.toFixed(1);
-			self.x3=(70-d3)*2/3+80;
-			self.x3=self.x3.toFixed(1);
-			self.x4=(70-d4)*2/3+80;
-			self.x4=self.x4.toFixed(1);
-			self.x5=(70-d5)*2/3+80;
-			self.x5=self.x5.toFixed(1);
+
 
 			var ctx=uni.createCanvasContext('myCanvas')
 			
-            ctx.beginPath();
-            ctx.moveTo(0,dm);
+			ctx.beginPath();
+			ctx.moveTo(0,dm);
+			
 			ctx.setLineDash([2, 4], 5);
-            ctx.lineTo(7*m, dm);
-            ctx.stroke();
+			ctx.lineTo(7*m, dm);
+			ctx.stroke();
+			
+			ctx.setLineDash([1, 0], 5);
+			ctx.beginPath()
+			ctx.setLineWidth(3);
+			ctx.moveTo(0,80)
+			
+			ctx.lineTo(m, d1)
+			ctx.setStrokeStyle('#FFFFFF')
+			ctx.stroke()
+			
+			ctx.beginPath()
+			ctx.moveTo(m,d1)
+			ctx.lineTo(2*m, d2)
+			
+			ctx.stroke()
+			
+			ctx.beginPath()
+			ctx.moveTo(2*m,d2)
+			ctx.lineTo(3*m, d3)
+			
+			ctx.stroke()
+			
+			ctx.beginPath()
+			ctx.moveTo(3*m,d3)
+			ctx.lineTo(4*m, d4)
+			
+			ctx.stroke()
+			ctx.beginPath()
+			ctx.moveTo(4*m,d4)
+			ctx.lineTo(5*m, d5)
+					  
+			ctx.stroke()
 			
            ctx.beginPath()
            ctx.arc(m, d1, 2, 0, 2 * Math.PI)
@@ -152,35 +184,8 @@
 		   ctx.setFillStyle('black')
 		   ctx.fill()
 		   
-		   ctx.setLineDash([1, 0], 5);
-		   ctx.beginPath()
-		   ctx.moveTo(0,80)
-		   ctx.lineTo(m, d1)
-		   ctx.setStrokeStyle('#FFFFFF')
-           ctx.stroke()
-		   
-		   ctx.beginPath()
-		   ctx.moveTo(m,d1)
-		   ctx.lineTo(2*m, d2)
-		   
-		   ctx.stroke()
-		   
-		   ctx.beginPath()
-		   ctx.moveTo(2*m,d2)
-		   ctx.lineTo(3*m, d3)
-		   
-		   ctx.stroke()
-		   
-		   ctx.beginPath()
-		   ctx.moveTo(3*m,d3)
-		   ctx.lineTo(4*m, d4)
-		   
-		   ctx.stroke()
-		   ctx.beginPath()
-		   ctx.moveTo(4*m,d4)
-		   ctx.lineTo(5*m, d5)
 		  
-		   ctx.stroke()
+		  ctx.fillText('(avg)',0,80)
 
 		   ctx.draw()
 			

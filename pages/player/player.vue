@@ -90,7 +90,7 @@
 			};
 		},
 		computed: {
-			...mapState(["index"]),
+			...mapState(["index","usetime"]),
 		},
 
 		onShow: function() {
@@ -103,17 +103,20 @@
 		},
 		methods: {
 			back: function() {
-			
 				uni.navigateBack({
 					delta: 1
 				});
 			},
 			changestatus: function(provider) {
 				this.status = provider;
-				console.log("this.status" + this.status)
 				if (this.status == 1) {
 					musicplayer.play();
+					if(this.minute<=7 ){
+					this.actime();
+					}
+					console.log('usetime:'+this.usetime);
 					let interval = setInterval(function() {
+						
 						var time =self.duration-musicplayer.currentTime;
 						if (self.duration<= musicplayer.currentTime) {
 							self.status= 0;
@@ -121,8 +124,9 @@
 						if (self.status!=1) {
 							clearInterval(interval);
 						}
+						
 						var minute1=Math.floor(time/60);
-						console.log("minute1"+ minute1)
+						
 						var second1=Math.floor(time-minute1*60);
 						if(minute1<10){
 							self.minute='0'+String(minute1);
@@ -136,8 +140,7 @@
 						else{
 							self.second=String(second1);
 						}
-						console.log("self.minute"+self.minute)
-						console.log("self.second"+self.second)
+						
 // 						self.minute='03';
 // 						self.second=Math.floor(currenttime-self.minute*60);
 						
@@ -148,9 +151,8 @@
 					musicplayer.stop();
 
 				}
-			}
-
-
+			},
+                    ...mapMutations(["actime"]),
 		}
 
 	}

@@ -1,2 +1,0 @@
-<import src="./breathe.vue.wxml" />
-    <template is="7a6cbefe" data="{{ ...$root['0'], $root }}"/>

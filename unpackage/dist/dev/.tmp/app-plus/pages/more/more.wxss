@@ -1,29 +1,87 @@
 
-.container {
+.container1 {
+	background: -webkit-linear-gradient(top, #FEFEFE 40%, #B9C6E3);
 	position: absolute;
 	width: 100%;
 	height: 100%;
 }
-.back {
+.title{
 	position: relative;
-	margin-top: 20rpx;
-	margin-left: 20rpx;
-	width: 150rpx;
+	margin-top: 40rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+.title .back {
+	margin-left: 30rpx;
+	width: 100rpx;
 	height: 100rpx;
+}
+.title .information{
+	margin-left: 500rpx;
+	width: 150rpx;
+	height: 150rpx;
 }
 .top {
 	position: relative;
 	width: 750rpx;
+	margin-top: 0rpx;
 }
 .top .day1 {
 	position: relative;
 	text-align: center;
 	color: #000000;
 }
+.dat {
+
+	width: 640rpx;
+	height: 150rpx;
+	position: absolute;
+	bottom: 30rpx;
+	font-size: 30rpx;
+
+	left: 72rpx;
+	color: #000000;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+.dat_item {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+
+	margin: 0rpx 20rpx;
+}
+.dat1 {
+
+	width: 640rpx;
+	height: 10rpx;
+	position: absolute;
+	bottom: 100rpx;
+	font-size: 20rpx;
+	left: 65rpx;
+	color: #9B9B9B;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+.dat_item1 {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+	margin: 0rpx 20rpx;
+}
 .top .day2 {
 	position: relative;
 	text-align: center;
 	font-size: 30rpx;
+	margin-left: -60rpx;
 	color: #000000;
 }
 .top .day3 {
@@ -33,7 +91,6 @@
 	color: #000000;
 }
 .medium {
-	margin-top: 300rpx;
 	position: relative;
 	margin-left: 100rpx;
 	width: 80%;
@@ -41,6 +98,7 @@
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display: flex;
+	margin-top: 60rpx;
 }
 .medium .triangle {
 	width: 200rpx;
@@ -58,10 +116,5 @@
 	border-color: #000000;
 	border-style: solid;
 	border-width: 2rpx;
-}
-._canvas {
-	position: relative;
-	width: 500rpx;
-	height: 300rpx;
 }
 

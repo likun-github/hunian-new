@@ -47,7 +47,7 @@
 			self=this
 			return {
 				status: 0,
-				music: [
+				music1: [
 					"https://xiaoyibang.top/uploads/uploads/morning.mp3",
 					"https://xiaoyibang.top/uploads/uploads/focus.mp3",
 					"https://xiaoyibang.top/uploads/uploads/lunch.mp3",
@@ -90,16 +90,22 @@
 			};
 		},
 		computed: {
-			...mapState(["index","usetime"]),
+			...mapState(["index","course","music","meditatetime"]),
 		},
 
 		onShow: function() {
-			musicplayer.src = this.music[this.index];
+// 			musicplayer.src = this.music1[this.index];
+// 			
+// 			this.minute=this.muscicminute[this.index];
+// 			this.second=this.musicsecond[this.index];
+// 			this.name=this.musicname[this.index];
+// 			this.duration=this.musicduration[this.index];
+			musicplayer.src = this.music.url;
 			
-			this.minute=this.muscicminute[this.index];
-			this.second=this.musicsecond[this.index];
-			this.name=this.musicname[this.index];
-			this.duration=this.musicduration[this.index];
+			this.minute=this.music.minute;
+			this.second=this.music.second;
+			this.name=this.music.name;
+			this.duration=this.music.time;
 		},
 		methods: {
 			back: function() {
@@ -111,9 +117,7 @@
 				this.status = provider;
 				if (this.status == 1) {
 					musicplayer.play();
-					if(this.minute<=7 ){
-					this.actime();
-					}
+					
 					console.log('usetime:'+this.usetime);
 					let interval = setInterval(function() {
 						
@@ -134,6 +138,9 @@
 						else{
 							self.minute=String(minute1);
 						}
+						if(minute1<=1 ){
+							self.addcourse();
+						}
 						if(second1<10){
 							self.second='0'+String(second1);
 						}
@@ -148,11 +155,12 @@
 				} else if (this.status == 2) {
 					musicplayer.pause();
 				} else if (this.status == 0) {
+					self.addmeditatetime(Math.floor(musicplayer.currentTime));
 					musicplayer.stop();
-
+					
 				}
 			},
-                    ...mapMutations(["actime"]),
+                    ...mapMutations(["addcourse","addmeditatetime"]),
 		}
 
 	}

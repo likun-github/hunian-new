@@ -44,38 +44,54 @@
 				day: '',
 			}
 		},
-		onShow: function() {
+		computed: {
+			...mapState(["firsttime"]),
 			
-// 			allList1 = uni.getStorageSync('home_key1');
-// 			if (allList) {
-// 				console.log('是');
-// 				self.getdailymusic(self.dailyList);
-// 			} else {
-// 				console.log('否');
-// 				self.getdailymusic(homeList);
-// 				for (var i=0;i<4;i++) {
-// 					console.log('i='+i);
-// 					self.allhomemusic(i);
-// 				}
-// 			}
+		},
+		onShow: function() {
+			if(this.firsttime){
+			console.log("show");
 			self.allList1= uni.getStorageSync('home_key1');
 			if(self.allList1){
 				console.log("是");
 			}
 			else{
+				console.log("否");
 				self.allList1=homeList[0];
-				
+				self.downloadmusic1();
 			}
+			
 			self.allList2= uni.getStorageSync('home_key2');
+			if(self.allList2){
+				console.log("是");
+			}
+			else{
+				console.log("否");
+				self.allList2=homeList[1];
+				self.downloadmusic2();
+			}
+			
 			self.allList3= uni.getStorageSync('home_key3');
+			if(self.allList3){
+				console.log("是");
+			}
+			else{
+				console.log("否");
+				self.allList3=homeList[2];
+				self.downloadmusic3();
+			}
+			
 			self.allList4= uni.getStorageSync('home_key4');
-			self.allList1=homeList[0];
-			self.allList2=homeList[1];
-			self.allList3=homeList[2];
-			self.allList4=homeList[3];
-			
-			console.log("self.allList1"+self.allList1.url);
-			
+			if(self.allList4){
+				console.log("是");
+			}
+			else{
+				console.log("否");
+				self.allList4=homeList[3];
+				self.downloadmusic4();
+			}
+			self.first();
+			}
  			
 			
 			
@@ -85,6 +101,7 @@
 			var date = new Date();
 			this.month = date.getMonth() + 1;
 			this.date = date.getDate();
+			
 			var day = date.getDay();
 			this.year = date.getFullYear();
 			switch (day) {
@@ -122,31 +139,29 @@
 				this.date = "0" + this.date;
 			}
 			
+			
 		},
 		methods: {
-			allhomemusic:function(i){
+			downloadmusic1:function(){
+				console.log("正在下载");
 							uni.downloadFile({
-								url: self.List[i],
+								url: self.allList1.url,
 								success: (res) => {
 									if (res.statusCode === 200) {
-										console.log('下载完成');
+										console.log('下载成功');
 										var newFile = res.tempFilePath;
 										uni.saveFile({
 											tempFilePath: newFile,
 											success: function(res) {
-												homeList[i].url = res.savedFilePath;
-												homenumber++;
-												self.getdailymusic(homeList);
-												if (homenumber == 4) {
-													
+												self.allList1.url = res.savedFilePath;	
 													uni.setStorage({
-														key: 'home_key',
-														data: homeList,
+														key: 'home_key1',
+														data: self.allList1,
 														success: function() {
 															console.log('success');
 														}
 													});
-												}
+												
 												console.log('节点三');
 											},
 											fail: function() {
@@ -162,13 +177,149 @@
 									}
 								},
 								fail: function() {
-									console.log('失败i'+i);
+									console.log("下载失败");
+								},complete:function(){
+									console.log("下载完成");
+								}
+							});
+						
+			},
+			downloadmusic2:function(){
+							uni.downloadFile({
+								url: self.allList2.url,
+								success: (res) => {
+									if (res.statusCode === 200) {
+										console.log('下载完成');
+										var newFile = res.tempFilePath;
+										uni.saveFile({
+											tempFilePath: newFile,
+											success: function(res) {
+												self.allList2.url = res.savedFilePath;	
+													uni.setStorage({
+														key: 'home_key2',
+														data: self.allList2,
+														success: function() {
+															console.log('success');
+														}
+													});
+												
+												console.log('节点三');
+											},
+											fail: function() {
+												console.log('保存失败');
+											},
+											complete: function() {
+												console.log('保存完成');
+							
+											}
+										});
+							
+							
+									}
+								},
+								fail: function() {
+									
+								}
+							});
+						
+			},
+			downloadmusic3:function(){
+							uni.downloadFile({
+								url: self.allList3.url,
+								success: (res) => {
+									if (res.statusCode === 200) {
+										console.log('下载完成');
+										var newFile = res.tempFilePath;
+										uni.saveFile({
+											tempFilePath: newFile,
+											success: function(res) {
+												self.allList3.url = res.savedFilePath;	
+													uni.setStorage({
+														key: 'home_key3',
+														data: self.allList3,
+														success: function() {
+															console.log('success');
+														}
+													});
+												
+												console.log('节点三');
+											},
+											fail: function() {
+												console.log('保存失败');
+											},
+											complete: function() {
+												console.log('保存完成');
+							
+											}
+										});
+							
+							
+									}
+								},
+								fail: function() {
+									
+								}
+							});
+						
+			},
+			downloadmusic4:function(i){
+							uni.downloadFile({
+								url: self.allList4.url,
+								success: (res) => {
+									if (res.statusCode === 200) {
+										console.log('下载完成');
+										var newFile = res.tempFilePath;
+										uni.saveFile({
+											tempFilePath: newFile,
+											success: function(res) {
+												self.allList4.url = res.savedFilePath;	
+													uni.setStorage({
+														key: 'home_key4',
+														data: self.allList4,
+														success: function() {
+															console.log('success');
+														}
+													});
+												
+												console.log('节点三');
+											},
+											fail: function() {
+												console.log('保存失败');
+											},
+											complete: function() {
+												console.log('保存完成');
+							
+											}
+										});
+							
+							
+									}
+								},
+								fail: function() {
+									
 								}
 							});
 						
 			},
 			choosecategory: function(provider) {
 				this.changeindex(provider);
+				
+				switch (provider) {
+					case 0:
+						self.choosemusic(self.allList1);
+						break;
+					case 1:
+						self.choosemusic(self.allList2)
+						break;
+					case 2:
+						self.choosemusic(self.allList3)
+						break;
+					case 3:
+						self.choosemusic(self.allList4)
+						break;
+					default:
+						break;
+				}
 				uni.navigateTo({
 					url: '/pages/player/player',
 				});
@@ -184,7 +335,7 @@
 				});
 			},
 
-			...mapMutations(["changeindex","choosemusic"])
+			...mapMutations(["changeindex","choosemusic","first"])
 		}
 	}
 </script>

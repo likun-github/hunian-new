@@ -22,17 +22,17 @@
 			<view class="medium">
 				<view class="triangle">
 					<view class="cicle"></view>
-					<view>25天</view>
+					<view>{{lastday}}天</view>
 					<view>持续天数</view>
 				</view>
 				<view class="triangle">
 					<view class="cicle"></view>
-					<view>25天</view>
+					<view>{{course}}个</view>
 					<view>总课程数</view>
 				</view>
 				<view class="triangle">
 					<view class="cicle"></view>
-					<view>25天</view>
+					<view>{{meditatetime}}秒</view>
 					<view>冥想时长</view>
 				</view>
 			</view>
@@ -80,11 +80,11 @@
 				aday: 15,
 				yday: 255,
 				mydate: 0,
-				x1: 20.5,
-				x2: 80.5,
+				x1: 50,
+				x2: 30,
 				x3: 57.5,
-				x4: 80.5,
-				x5: 90.5,
+				x4: 50,
+				x5: 30,
 
 			};
 		},
@@ -92,14 +92,20 @@
 			halfheight() {
 				return uni.upx2px(750 / 2) + 'px';
 			},
-			...mapState(["usetime", "x11", "x22", "x33", "x44"]),
+			...mapState([ "x11", "x22", "x33", "x44","x55"]),
+			...mapState([ "meditatetime","course","lastday"]),
+			
 		},
 		onReady: function(e) {
+			self.x1=self.x11;
+			self.x2=self.x22;
+			self.x3=self.x33;
+			self.x4=self.x44;
+			self.x5=self.x55;
 			var wid = uni.getSystemInfoSync().windowWidth;
 
 
 			console.log(this.usetime);
-			self.x5 = this.usetime;
 
 
 

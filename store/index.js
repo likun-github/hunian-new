@@ -5,31 +5,106 @@ const store = new Vuex.Store({
     state: {
 		music:{
 			name: '',
-			src: '',
+			url: '',
 			minute:0,
 			second:0,
 			time:300,
 		},
-		index:0,
+		firsttime:true,
+		oldday:0,
 		usetime:0,
-		x11:0,
-		x22:0,
-		x33:0,
-		x44:0,
-		x55:0,
+		index:0,
+		lastday:0,
+		course:0,
+		meditatetime:0,
+		x11:50,
+		x22:30,
+		x33:45,
+		x44:50,
+		x55:50,
     	
     },
     mutations: {
+		first(state){
+			state.firsttime=false;
+		},
 		changeindex(state,provider){
 			console.log("provider"+provider)
 			state.index=provider;
 		},
 		choosemusic(state,provider){
-			state.music=provider
+			state.music=provider;
+			console.log("state.music"+state.music.url);
 		},
-		actime(state){
-			state.usetime=state.usetime+1;	
-		}
+		addcourse(state){
+			var date = new Date();
+			var date = date.getDate();
+			state.lastday=uni.getStorageSync('lastday');
+			var olddate=uni.getStorageSync('date');
+			if(!state.lastday){
+				uni.setStorage({
+					key: 'lastday',
+					data:  0,
+					success: function() {
+						console.log('success');
+					}
+				});
+			}
+			if(date-olddate>1){
+				uni.setStorage({
+					key: 'lastday',
+					data:  0,
+					success: function() {
+						console.log('success');
+					}
+				});
+			}
+			else if(date-olddate==1){
+				state.lastday+=1;
+				uni.setStorage({
+					key: 'lastday',
+					data:  state.lastday,
+					success: function() {
+						console.log('success');
+					}
+				});
+			}
+			uni.setStorage({
+				key: 'date',
+				data:  date,
+				success: function() {
+					console.log('success');
+				}
+			});
+			 var cr=uni.getStorageSync('course');
+			 if(cr){
+				 state.course=cr;
+			 }
+			state.course+=1;
+			uni.setStorage({
+					key: 'course',
+					data:  state.course,
+					success: function() {
+					console.log('success');
+					}
+				});
+			
+		},
+		addmeditatetime(state,provider){
+			var cd=uni.getStorageSync('meditate');
+			 if(cd){
+				 state.meditatetime=cd;
+			 }
+			state.meditatetime+=provider;
+			uni.setStorage({
+					key: 'meditate',
+					data:  state.meditatetime,
+					success: function() {
+					console.log('success');
+					}
+				});
+			
+		},
 
     }
 })

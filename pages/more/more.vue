@@ -3,6 +3,7 @@
 		<view class="back" @tap="back">
 			<image src="/static/back-black.png" style="width: 50%;height: 50%;"></image>
 		</view>
+		<view style="position: absolute;bottom: halfheight;">
 		<view class="top">
 			<view class="day1">
 				<view style="position: absolute;left: 420upx;top: 43upx;  font-size: 20upx;">月</view>
@@ -10,7 +11,7 @@
 			</view>
 			<view class="day2" style="margin-top: 50upx;font-size: 80upx;">+{{aday}}</view>
 			<view style="position: absolute;left: 450upx;top: 155upx;  font-size: 55upx;">天</view>
-			<view class="day3" style="">{{yday}}天</view>
+			
 		</view>
 		<view class="medium">
 			<view class="triangle">
@@ -28,10 +29,11 @@
 				<view>25天</view>
 				<view>冥想时长</view>
 			</view>
-			
+			</view>
 		</view>
-         <text style="position: absolute;top:800upx;left: 50upx;">正念指数</text>
-		<canvas canvas-id="myCanvas" style="border: 0upx solid;width: 750upx;height: 260upx; top:250upx;"/>
+		
+         <text style="position: absolute;bottom:420upx;left: 50upx;">正念指数</text>
+		<canvas canvas-id="myCanvas" style="border: 0upx solid;position: absolute; width: 750upx;height: 250upx; bottom:150upx;"/>
 	<view class='dat'>
                <view class="dat_item" >{{x1}}</view>
                <view class="dat_item" >{{x2}}</view>
@@ -45,7 +47,10 @@
 	           <view class="dat_item1">{{month}}月{{mydate-2}}日</view>
 	           <view class="dat_item1">{{month}}月{{mydate-1}}日</view>
 			   <view class="dat_item1">{{month}}月{{mydate}}日</view>
-	</view>
+	    </view>
+	
+	
+	
 	</view>
 </template>
 
@@ -78,43 +83,48 @@
 			};
 		},
 		computed: {
-			...mapState([""]),
+			halfheight(){
+				return uni.upx2px(750/2)+'px';
+			}
 		},
 		onReady:function(e){
             var wid=uni.getSystemInfoSync().windowWidth;
+			var hei=uni.getSystemInfoSync().windowHeight;
 			console.log('wid='+wid);
-			
+			console.log('hei='+hei);
 			var m=Math.floor((wid/375)*63);
+			var h=Math.floor()
 			var Date1=new Date();
 
 			this.mydate=Date1.getDate();
 			//d取值40至100越大越差
 			 d1=90;
-			 d2=60;
+			 d2=41;
 			 d3=60;
 			 d4=85;
-			 d5=42;
+			 d5=60;
 			
-			
-			
+			//找到最大值
+			var dm;
+			dm=Math.min(d1,d2,d3,d4,d5);
 			//正念指数
-            self.x1=(100-d1)+40;
+            self.x1=(70-d1)*2/3+80;
 			self.x1=self.x1.toFixed(1);
-			self.x2=(100-d2)+40;
+			self.x2=(70-d2)*2/3+80;
 			self.x2=self.x2.toFixed(1);
-			self.x3=(100-d3)+40;
+			self.x3=(70-d3)*2/3+80;
 			self.x3=self.x3.toFixed(1);
-			self.x4=(100-d4)+40;
+			self.x4=(70-d4)*2/3+80;
 			self.x4=self.x4.toFixed(1);
-			self.x5=(100-d5)+40;
+			self.x5=(70-d5)*2/3+80;
 			self.x5=self.x5.toFixed(1);
 
 			var ctx=uni.createCanvasContext('myCanvas')
 			
             ctx.beginPath();
-            ctx.moveTo(0,40);
+            ctx.moveTo(0,dm);
 			ctx.setLineDash([2, 4], 5);
-            ctx.lineTo(7*m, 40);
+            ctx.lineTo(7*m, dm);
             ctx.stroke();
 			
            ctx.beginPath()
@@ -199,6 +209,7 @@
 		width: 100%;
 		height: 100%;
 	}
+
 	.back{
 		position: relative;
 		margin-top: 40upx;
@@ -209,12 +220,13 @@
 	.top{
 		position: relative;
 		width: 750upx;
+		margin-top: 0upx;
 	}
 	.top .day1{
 		position: relative;
 		text-align: center;
 		color: #000000;
-		margin-top: 20upx;
+		
 
 
 	}
@@ -223,7 +235,7 @@
 		width: 640upx;
 		height: 150upx;
 		position: absolute;
-        bottom:60upx;
+        bottom:30upx;
 		font-size: 30upx;
         
 		left:72upx;
@@ -242,7 +254,7 @@
 		width: 640upx;
 		height: 150upx;
 		position: absolute;
-	    bottom:20upx;
+	    bottom:-10upx;
 		font-size: 20upx;
 		left:65upx;
 	color: #9B9B9B;
@@ -268,11 +280,11 @@
 		color: #000000;
 	}
 	.medium{
-		margin-top: 100upx;
 		position: relative;
 		margin-left: 100upx;
 		width: 80%;
 		display: flex;
+        margin-top: 60upx;
 	}
 	.medium .triangle{
 		width: 200upx;

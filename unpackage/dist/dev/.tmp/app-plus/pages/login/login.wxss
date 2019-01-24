@@ -1,0 +1,189 @@
+
+.container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0)), color-stop(50%, rgba(185, 198, 227, 1)), to(rgba(255, 255, 255, 0)));
+	background: -o-linear-gradient(bottom, rgba(255, 255, 255, 0) 0%, rgba(185, 198, 227, 1) 50%, rgba(255, 255, 255, 0) 100%);
+	background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgba(185, 198, 227, 1) 50%, rgba(255, 255, 255, 0) 100%);
+}
+.title {
+	position: relative;
+	width: 200rpx;
+	height: 200rpx;
+}
+.top {
+	position: relative;
+	margin-left: 125rpx;
+	margin-top: 250rpx;
+	width: 100px;
+	height: 0;
+	border-bottom: 50px solid #FEFEFE;
+	border-right: 50px solid transparent;
+	opacity: 0.4;
+	font-size: 38rpx;
+}
+.medium {
+	position: relative;
+	margin-left: 125rpx;
+	border-bottom-left-radius: 25rpx;
+	border-top-right-radius: 25rpx;
+	width: 500rpx;
+	height: 400rpx;
+	background-color: #FEFEFE;
+}
+.medium .account {
+	position: relative;
+	margin-left: 50rpx;
+	font-family: PingFangSC-Thin, sans-serif;
+	font-size: 35rpx;
+}
+.medium .password {
+	margin-top: 20rpx;
+	position: relative;
+	margin-left: 50rpx;
+	font-size: 35rpx;
+	font-family: PingFangSC-Thin, sans-serif;
+}
+.medium .null {
+	position: relative;
+	height: 50rpx;
+}
+.medium .line {
+	position: relative;
+	width: 400rpx;
+	height: 2rpx;
+	margin-left: 50rpx;
+	background-color: #000000;
+}
+._input {
+	margin-left: 50rpx;
+	position: relative;
+	font-size: 30rpx;
+	width: 400rpx;
+	height: 80rpx;
+	background: #ffffff;
+	color: #000000;
+}
+.bottom {
+	margin-left: 325rpx;
+	height: 0;
+	width: 100px;
+	border-top: 50px solid #FEFEFE;
+	opacity: 0.4;
+	border-left: 50px solid transparent;
+}
+.bottom image {
+	position: absolute;
+	width: 65rpx;
+	height: 30rpx;
+	margin-top: -60rpx;
+	margin-left: 85rpx;
+}
+.primary {
+	position: relative;
+	width: 500rpx;
+	margin-top: 150rpx;
+	background-color: #EB6F67;
+	color: #EFEFEF;
+}
+
+
+.container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0)), color-stop(50%, rgba(185, 198, 227, 1)), to(rgba(255, 255, 255, 0)));
+	background: -o-linear-gradient(bottom, rgba(255, 255, 255, 0) 0%, rgba(185, 198, 227, 1) 50%, rgba(255, 255, 255, 0) 100%);
+	background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgba(185, 198, 227, 1) 50%, rgba(255, 255, 255, 0) 100%);
+}
+.title {
+	position: relative;
+	width: 200rpx;
+	height: 200rpx;
+}
+.top {
+	position: relative;
+	margin-left: 125rpx;
+	margin-top: 100rpx;
+	width: 100px;
+	height: 0;
+	border-bottom: 50px solid #FEFEFE;
+	border-right: 50px solid transparent;
+	opacity: 0.4;
+	font-size: 38rpx;
+}
+.medium {
+	position: relative;
+	margin-left: 125rpx;
+	border-bottom-left-radius: 25rpx;
+	border-top-right-radius: 25rpx;
+	width: 500rpx;
+	height: 550rpx;
+	background-color: #FEFEFE;
+}
+.medium .account {
+	position: relative;
+	margin-left: 50rpx;
+	font-family: PingFangSC-Thin, sans-serif;
+	font-size: 35rpx;
+}
+.medium .password {
+	margin-top: 40rpx;
+	position: relative;
+	margin-left: 50rpx;
+	font-family: PingFangSC-Thin, sans-serif;
+	font-size: 35rpx;
+}
+.medium .null {
+	position: relative;
+	height: 65rpx;
+}
+.medium .line {
+	position: relative;
+	width: 400rpx;
+	height: 2rpx;
+	margin-left: 50rpx;
+	background-color: #000000;
+}
+._input {
+	margin-left: 50rpx;
+	position: relative;
+	font-size: 30rpx;
+	width: 400rpx;
+	height: 60rpx;
+	background: #ffffff;
+	color: #000000;
+}
+.bottom {
+	margin-left: 325rpx;
+	
+	height: 0;
+	width: 100px;
+	border-top: 50px solid #FEFEFE;
+	opacity: 0.4;
+	border-left: 50px solid transparent;
+}
+.bottom image {
+	position: absolute;
+	width: 65rpx;
+	height: 30rpx;
+	margin-top: -60rpx;
+	margin-left: 85rpx;
+}
+.primary {
+	position: relative;
+	width: 500rpx;
+	margin-top: 150rpx;
+	background-color: #EB6F67;
+	color: #EFEFEF;
+}
+
+
+.container{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+

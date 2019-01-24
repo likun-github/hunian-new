@@ -1,0 +1,67 @@
+
+.container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+.back {
+	position: relative;
+	margin-top: 20rpx;
+	margin-left: 20rpx;
+	width: 150rpx;
+	height: 100rpx;
+}
+.top {
+	position: relative;
+	width: 750rpx;
+}
+.top .day1 {
+	position: relative;
+	text-align: center;
+	color: #000000;
+}
+.top .day2 {
+	position: relative;
+	text-align: center;
+	font-size: 30rpx;
+	color: #000000;
+}
+.top .day3 {
+	position: relative;
+	text-align: center;
+	font-size: 30rpx;
+	color: #000000;
+}
+.medium {
+	margin-top: 300rpx;
+	position: relative;
+	margin-left: 100rpx;
+	width: 80%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+.medium .triangle {
+	width: 200rpx;
+	position: relative;
+	text-align: center;
+	font-size: 24rpx;
+	display: block;
+	margin-right: 50rpx;
+}
+.triangle .cicle {
+	width: 20rpx;
+	height: 20rpx;
+	border-radius: 15rpx;
+	background-color: transparent;
+	border-color: #000000;
+	border-style: solid;
+	border-width: 2rpx;
+}
+._canvas {
+	position: relative;
+	width: 500rpx;
+	height: 300rpx;
+}
+

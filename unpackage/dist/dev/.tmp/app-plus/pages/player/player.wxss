@@ -4,8 +4,10 @@
 	width: 100%;
 	height: 100%;
 }
-.title{
+.title {
 	position: absolute;
+	margin-top: 50rpx;
+	margin-left: 50rpx;
 	width: 100rpx;
 	height: 100rpx;
 }
@@ -16,21 +18,21 @@
 }
 @-webkit-keyframes shake {
 0% {
-		 opacity:1;
+		opacity: 1;
 		-webkit-transform: scale(0.6);
 }
 100% {
-		 opacity:0;
+		opacity: 0;
 		-webkit-transform: scale(1);
 }
 }
 @keyframes shake {
 0% {
-		 opacity:1;
+		opacity: 1;
 		-webkit-transform: scale(0.6);
 }
 100% {
-		 opacity:0;
+		opacity: 0;
 		-webkit-transform: scale(1);
 }
 }
@@ -78,7 +80,7 @@
 	border-style: solid;
 	border-width: 2rpx;
 }
-.medium{
+.medium {
 	position: relative;
 	margin-top: 460rpx;
 	text-align: center;

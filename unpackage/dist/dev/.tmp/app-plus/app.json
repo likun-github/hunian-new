@@ -2,7 +2,9 @@
   "pages": [
     "pages/index/index",
     "pages/player/player",
-    "pages/breath/breathe"
+    "pages/breath/breathe",
+    "pages/more/more",
+    "pages/login/login"
   ],
   "subPackages": [],
   "window": {
